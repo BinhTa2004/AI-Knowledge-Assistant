@@ -1,37 +1,65 @@
-# RAG Chat Demo (Streamlit)
+# 🧠 RAG Chatbot with Gemini (Streamlit + LangChain)
 
-A Streamlit-based RAG chatbot using LangChain + Google Gemini. It supports:
+This project is a Retrieval-Augmented Generation (RAG) chatbot system built with Streamlit, LangChain, Google Gemini, and FAISS. It allows users to interact with their documents through an AI-powered conversational interface.
 
-- Loading default PDF documents from `../Rag ChatBot/data`
-- Uploading additional PDF files from the sidebar
-- Chunking + embedding + FAISS retrieval
-- Chat-style Q&A interface
+The system focuses on building a modular and extensible RAG pipeline for document-based question answering.
 
-## 1) Project Structure
+## 🚀 Key Features
 
-- `app.py`: Streamlit UI
-- `ultis/`: RAG core modules (`rag_core.py`, `document_pipeline.py`, `chain_factory.py`, `config.py`)
-- `requirements.txt`: Python dependencies
-- `Dockerfile`: Container image definition
-- `docker-compose.yml`: Docker service setup
+- 📄 Document-based QA using PDF knowledge sources
+- 🔎 Semantic retrieval with FAISS vector search
+- 🧩 Chunking pipeline for efficient document processing
+- 🤖 LLM-powered responses using Google Gemini
+- 💬 Interactive chat interface via Streamlit
+- 🧱 Modular RAG architecture (pipeline separated from UI)
 
-## 2) Prerequisites
+## ⚙️ Configuration
 
-- Python 3.11+
-- A valid `GOOGLE_API_KEY`
-
-Create `.env` in this folder:
+The application requires a Google Gemini API key:
 
 ```env
 GOOGLE_API_KEY=your_google_api_key_here
 ```
 
-## 3) Run Locally
+This key is used for generating responses from the LLM.
 
-From this folder (`Multi-agent`):
+## 🧠 How It Works (High-Level Flow)
 
-```powershell
+1. Load PDF documents
+2. Split documents into semantic chunks
+3. Convert chunks into embeddings
+4. Store embeddings in FAISS vector database
+5. User sends a query
+6. Retrieve relevant document context
+7. Pass context + query to Gemini LLM
+8. Return grounded response in chat UI
+
+## 📥 Getting Started (Clone & Run)
+
+### 1. Clone the repository
+
+```bash
+git clone <your-repo-url>
+cd <your-repo-folder>
+```
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+### 3. Set environment variables
+
+Create a `.env` file in the root folder:
+
+```env
+GOOGLE_API_KEY=your_google_api_key_here
+```
+
+### 4. Run the application
+
+```bash
 streamlit run app.py
 ```
 
@@ -39,30 +67,18 @@ Then open:
 
 - http://localhost:8501
 
-## 4) Run with Docker Compose
+## 🎯 Purpose of the Project
 
-From this folder (`Multi-agent`):
+This project demonstrates:
 
-```powershell
-docker compose up --build
-```
+- Real-world implementation of Retrieval-Augmented Generation (RAG)
+- Integration of LLMs with private document knowledge
+- Clean modular architecture for AI systems
+- Practical AI engineering workflow from data to retrieval to generation
 
-Then open:
+It can be extended into:
 
-- http://localhost:8501
-
-Stop services:
-
-```powershell
-docker compose down
-```
-
-## 5) Notes
-
-- This setup mounts both:
-  - `Multi-agent/data`
-  - `../Rag ChatBot/data`
-- If `../Rag ChatBot/data` does not exist in your repository, either create it or update the default path in `app.py`.
-- Uploaded files are saved to a temporary folder inside the app runtime and then indexed.
-- `.dockerignore` is included to keep image builds smaller and faster.
+- Enterprise document assistant
+- Research assistant for PDFs
+- Multi-source knowledge chatbot
 
