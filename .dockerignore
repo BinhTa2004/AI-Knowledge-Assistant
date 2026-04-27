@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Git
+.git/
+.gitignore
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Local runtime artifacts
+*.log
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.*
+
+# Heavy or irrelevant data
+**/*.ipynb
+**/.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db

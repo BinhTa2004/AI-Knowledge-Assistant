@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  rag-chatbot:
+    build:
+      context: ..
+      dockerfile: AI-Knowledge-Assistant/Dockerfile
+    container_name: rag-chatbot
+    ports:
+      - "8501:8501"
+    # Environment variables for .env usage or direct injection (optional).
+    # If you have a .env file, Docker Compose can load them with env_file: .env
+    # Or define them inline:
+    environment:
+      - PYTHONUNBUFFERED=1
+    # (Optional) If you want to mount your local code into the container for live development:
+    # volumes:
+    #   - .:/usr/src/app
+    restart: unless-stopped
